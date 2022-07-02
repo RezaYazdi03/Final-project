@@ -24,11 +24,6 @@ namespace firstpage
 			InitializeComponent();
 		}
 
-		private void Backbtn_Click(object sender, RoutedEventArgs e)
-		{
-
-		}
-
 		private void Closebtn_Click(object sender, RoutedEventArgs e)
 		{
 			this.Close();
@@ -39,11 +34,24 @@ namespace firstpage
 
 		}
 
-		private void Backbtn_Click_1(object sender, RoutedEventArgs e)
+		private void Backbtn_Click(object sender, RoutedEventArgs e)
 		{
 			MainWindow mainWindow = new MainWindow();
 			mainWindow.Show();
 			this.Close();
+		}
+		private void Showpasscheck_Checked(object sender, RoutedEventArgs e)
+		{
+			passwordbox.Visibility = Visibility.Hidden;
+			passboxtxt.Text = passwordbox.Password;
+			passboxtxt.Visibility = Visibility.Visible;
+		}
+
+		private void Showpasscheck_Unchecked(object sender, RoutedEventArgs e)
+		{
+			passboxtxt.Visibility = Visibility.Hidden;
+			passwordbox.Password = passboxtxt.Text;
+			passwordbox.Visibility = Visibility.Visible;
 		}
 	}
 }

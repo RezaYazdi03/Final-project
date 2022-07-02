@@ -30,7 +30,9 @@
                     Grid.Column="1" 
                     Grid.Row="0" 
                     BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC"
-                        FontWeight="Bold" FontStyle="Normal" Padding="10" Click="Backbtn_Click_1">
+                        FontWeight="Bold" FontStyle="Normal" Padding="10" 
+                        Click="Backbtn_Click" Height="30" 
+                        VerticalAlignment="Top">
                     <Button.OpacityMask>
                         <ImageBrush ImageSource="/icons8-undo-48.png"/>
                     </Button.OpacityMask>
@@ -53,8 +55,11 @@
 
             </Grid>
             <TextBlock Grid.Row="1" 
-             HorizontalAlignment="Center" VerticalAlignment="Center" 
-                       Text="Booklib" FontSize="202" FontFamily="Brush Script MT" Foreground="#FFEF041C"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                       Text="Admin" FontSize="202" 
+                       FontFamily="Brush Script MT" 
+                       Foreground="#FFEF041C" FontStyle="Normal" FontWeight="Normal"
                        />
             <StackPanel Grid.Row="2">
                 <TextBlock 
@@ -70,13 +75,30 @@
             <StackPanel Grid.Row="3">
                 <TextBlock 
                     Margin="100,0"
-                    Text="Password" FontSize="22" />
-                <PasswordBox x:Name="passwordbox" 
-                    Margin="150,20"
+                    Text="Password" FontSize="22"
+                    VerticalAlignment="Center"/>
+
+                <Grid>
+                    <PasswordBox x:Name="passwordbox" 
+                    Margin="150,20,150,20"
                     Padding="10,0"
                     BorderBrush="Black"
-                    BorderThickness="0,0,0,2" Background="{x:Null}"
+                    BorderThickness="0,0,0,1" Background="{x:Null}"
                     />
+                    <TextBox x:Name="passboxtxt" 
+                        Padding="10,0"
+                        Background="{x:Null}"
+                        Visibility="Hidden" 
+                        BorderThickness="0,0,0,1" BorderBrush="Black"
+                        Margin="150,20,150,20"/>
+                </Grid>
+                <CheckBox x:Name="Showpasscheck" Grid.Column="1"
+                        VerticalAlignment="Center" 
+                          Content="Show password"
+                        Margin="150,0,540,5"
+                          Width="110" Background="White" BorderBrush="#FF615F5F" Checked="Showpasscheck_Checked" Unchecked="Showpasscheck_Unchecked" 
+                             >
+                </CheckBox>
             </StackPanel>
             <Grid Grid.Row="4">
                 <Button x:Name="Loginbtn" 

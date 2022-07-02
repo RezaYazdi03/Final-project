@@ -38,11 +38,32 @@ namespace firstpage
 			
 		}
 
-		private void Button_Click(object sender, RoutedEventArgs e)
+		private void Adminbtn_Click(object sender, RoutedEventArgs e)
 		{
 			AdminPage adminPage = new AdminPage();
 			adminPage.Show();
 			this.Close();
+		}
+
+		private void Signupbtn_Click(object sender, RoutedEventArgs e)
+		{
+			SignupPage signuppage = new SignupPage();
+			signuppage.Show();
+			this.Close();
+		}
+
+		private void Showpasscheck_Checked(object sender, RoutedEventArgs e)
+		{
+			passwordbox.Visibility = Visibility.Hidden;
+			passboxtxt.Text = passwordbox.Password;
+			passboxtxt.Visibility = Visibility.Visible;
+		}
+
+		private void Showpasscheck_Unchecked(object sender, RoutedEventArgs e)
+		{
+			passboxtxt.Visibility = Visibility.Hidden;
+			passwordbox.Password = passboxtxt.Text;
+			passwordbox.Visibility = Visibility.Visible;
 		}
 	}
 }

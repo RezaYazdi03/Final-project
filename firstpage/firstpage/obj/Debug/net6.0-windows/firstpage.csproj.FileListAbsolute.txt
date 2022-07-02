@@ -21,3 +21,5 @@ C:\Users\yazdi-pc\Desktop\Final-project\firstpage\firstpage\obj\Debug\net6.0-win
 C:\Users\yazdi-pc\Desktop\Final-project\firstpage\firstpage\obj\Debug\net6.0-windows\ref\firstpage.dll
 C:\Users\yazdi-pc\Desktop\Final-project\firstpage\firstpage\obj\Debug\net6.0-windows\AdminPage.g.cs
 C:\Users\yazdi-pc\Desktop\Final-project\firstpage\firstpage\obj\Debug\net6.0-windows\AdminPage.baml
+C:\Users\yazdi-pc\Desktop\Final-project\firstpage\firstpage\obj\Debug\net6.0-windows\SignupPage.g.cs
+C:\Users\yazdi-pc\Desktop\Final-project\firstpage\firstpage\obj\Debug\net6.0-windows\SignupPage.baml

@@ -8,13 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="icons8-eye-50.png" />
     <None Remove="icons8-undo-48.png" />
-    <None Remove="zcXoA4zri.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="icons8-eye-50.png" />
     <Resource Include="icons8-undo-48.png" />
-    <Resource Include="zcXoA4zri.png" />
   </ItemGroup>
 
 </Project>
