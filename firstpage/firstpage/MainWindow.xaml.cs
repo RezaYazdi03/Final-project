@@ -35,6 +35,14 @@ namespace firstpage
 		{
 			string username = Usernamebox.Text;
 			string password = passwordbox.Password;
+			
+		}
+
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			AdminPage adminPage = new AdminPage();
+			adminPage.Show();
+			this.Close();
 		}
 	}
 }

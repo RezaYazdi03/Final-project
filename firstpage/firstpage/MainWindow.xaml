@@ -8,12 +8,11 @@
         Title="MainWindow" Height="700" Width="800"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         >
-    
+
     <Grid x:Name="maingrid" >
-        
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="0.25*"/>
+                <RowDefinition Height="30"/>
                 <RowDefinition Height="3*"/>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -23,14 +22,14 @@
             <Grid Grid.Row="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
-                    <ColumnDefinition Width="0.03*"/>
+                    <ColumnDefinition Width="30"/>
                 </Grid.ColumnDefinitions>
                 <Button x:Name="Closebtn" 
                     Grid.Column="1" 
                     Grid.Row="0" 
                     Padding="0"
                     Button.Content = "X" Click="Closebtn_Click" 
-                    Foreground="#FFE61B1B" FontSize="20" Background="{x:Null}" 
+                    Foreground="#FFE61B1B" FontSize="25" Background="{x:Null}" 
                     BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC"
                         FontWeight="Bold" FontStyle="Normal"/>
 
@@ -87,7 +86,7 @@
                         Margin="10,0"
                         Height="40"
                         Width="100" Background="{x:Null}"
-                        Content="Admin" BorderBrush="{x:Null}" Foreground="#FFEF041C" FontSize="16" FontWeight="Bold"/>
+                        Content="Admin" BorderBrush="{x:Null}" Foreground="#FFEF041C" FontSize="16" FontWeight="Bold" Click="Button_Click"/>
                 <Button Grid.Column="1"
                     VerticalAlignment="Center"
                         HorizontalAlignment="Left"

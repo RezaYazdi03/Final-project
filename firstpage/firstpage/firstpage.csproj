@@ -7,4 +7,14 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="icons8-undo-48.png" />
+    <None Remove="zcXoA4zri.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="icons8-undo-48.png" />
+    <Resource Include="zcXoA4zri.png" />
+  </ItemGroup>
+
 </Project>
