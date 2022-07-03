@@ -11,34 +11,36 @@
         >
 
     <Grid x:Name="maingrid" >
-        <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="Closebtn" 
+                    Grid.Column="1" 
+                    Padding="0"
+                    Button.Content = "X" Click="Closebtn_Click" 
+                    Foreground="#FFE61B1B" FontSize="25" Background="{x:Null}" 
+                    BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC"
+                        FontWeight="Bold" FontStyle="Normal" OpacityMask="#FFEC0707"/>
+        </Grid>
+        <Grid Grid.Row="1">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
                 <RowDefinition Height="3*"/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition Height="0.5*"/>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="30"/>
-                </Grid.ColumnDefinitions>
-                <Button x:Name="Closebtn" 
-                    Grid.Column="1" 
-                    Grid.Row="0" 
-                    Padding="0"
-                    Button.Content = "X" Click="Closebtn_Click" 
-                    Foreground="#FFE61B1B" FontSize="25" Background="{x:Null}" 
-                    BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC"
-                        FontWeight="Bold" FontStyle="Normal"/>
-            </Grid>
-            <TextBlock Grid.Row="1" 
+            <TextBlock Grid.Row="0" 
              HorizontalAlignment="Center" VerticalAlignment="Center" 
                        Text="Booklib" FontSize="202" FontFamily="Brush Script MT" Foreground="#FFEF041C"
                        />
-            <StackPanel Grid.Row="2">
+            <StackPanel Grid.Row="1">
                 <TextBlock 
                     Margin="100,0"
                     Text="Username" FontSize="22" />
@@ -49,7 +51,7 @@
                     BorderThickness="0,0,0,1" Background="{x:Null}"
                     />
             </StackPanel>
-            <StackPanel Grid.Row="3">
+            <StackPanel Grid.Row="2">
                 <TextBlock 
                     Margin="100,0"
                     Text="Password" FontSize="22"
@@ -76,7 +78,7 @@
                              >
                 </CheckBox>
             </StackPanel>
-            <Grid Grid.Row="4">
+            <Grid Grid.Row="3">
                 <Button x:Name="Loginbtn" 
                     Content="Log in"
                     VerticalAlignment="Center"
@@ -91,7 +93,7 @@
                     HorizontalAlignment="Center"
                     Text="_________________________________________________________________________" Foreground="#FFEF041C" FontWeight="Bold"/>
             </Grid>
-            <Grid Grid.Row="5">
+            <Grid Grid.Row="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -114,5 +116,6 @@
                         />
             </Grid>
         </Grid>
+
     </Grid>
 </Window>
