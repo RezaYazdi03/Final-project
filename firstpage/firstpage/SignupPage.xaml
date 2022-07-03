@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:firstpage"
         mc:Ignorable="d"
         Title="SignupPage" Height="700" Width="800"
-        WindowStartupLocation="CenterScreen" WindowStyle="None">
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        >
     <Grid>
         <Grid>
             <Grid.RowDefinitions>
@@ -98,6 +99,7 @@
                                 Padding="10,0"
                                 BorderBrush="#FFEF041C"
                                 BorderThickness="0,0,0,2" Background="{x:Null}"
+                                 PreviewTextInput="Phonebox_PreviewTextInput"
                                 />
                         </StackPanel>
                         <StackPanel Grid.Row="4">
@@ -161,14 +163,14 @@
                             </CheckBox>
                         </StackPanel>
                         <Grid Grid.Row="7">
-                            <Button x:Name="Loginbtn" 
-                                Content="Log in"
+                            <Button x:Name="Signupbtn" 
+                                Content="Signup"
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="Center"
                                 Height="60"
                                 Width="500" FontSize="30" Foreground="White" 
                                 FontFamily="Bodoni MT Black" Background="#FFEF041C" 
-                                BorderBrush="{x:Null}" Click="Loginbtn_Click"
+                                BorderBrush="{x:Null}" Click="Signupbtn_Click"
                             />
                         </Grid>
                     </Grid>

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace firstpage
 {
@@ -55,12 +56,50 @@ namespace firstpage
 			passwordbox.Visibility = Visibility.Visible;
 			confirmpasswordbox.Visibility = Visibility.Visible;
 		}
-		private void Loginbtn_Click(object sender, RoutedEventArgs e)
+
+		private void Signupbtn_Click(object sender, RoutedEventArgs e)
 		{
-			string username = Namebox.Text;
-			string password = passwordbox.Password;
+			string Name = Namebox.Text;
+			if (!Name_Check(Name))
+			{
+				/*write later*/
+			}
+			string Lastname = Lastnamebox.Text;
+			if (!Name_Check(Lastname))
+			{
+				/*write later*/
+			}
+			try { int Phone = int.Parse(Phonebox.Text); }
+			catch 
+			{
+				/*write later*/
+			}
+			string Email = Emailbox.Text;
+			if (Email_check(Email))
+			{
+				/*write later*/
+			}
+			string Password = passwordbox.Password;
+			string Confirmpassword = confirmpasswordbox.Password;
+
 
 		}
+		static bool Name_Check(string Name)
+		{
+			if (Regex.IsMatch(Name,"^[a-zA-Z]{3,32}$"))
+			{
+				return true;
+			}
+			return false;
+		}
+		static bool Email_check(string Email)
+		{
+			return false;
+		}
 
+		private void Phonebox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = Regex.IsMatch(e.Text, "[^0-9]+");
+		}
 	}
 }

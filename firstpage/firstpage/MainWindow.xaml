@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="700" Width="800"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
+        BorderThickness="0,0,0,0"
         >
 
     <Grid x:Name="maingrid" >
