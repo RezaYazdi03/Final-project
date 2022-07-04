@@ -18,68 +18,78 @@
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
+
                 <ColumnDefinition Width="30"/>
             </Grid.ColumnDefinitions>
+            
             <Button x:Name="Closebtn" 
                     Grid.Column="1" 
+                    Grid.Row="0" 
                     Padding="0"
                     Button.Content = "X" Click="Closebtn_Click" 
                     Foreground="#FFE61B1B" FontSize="25" Background="{x:Null}" 
                     BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC"
                         FontWeight="Bold" FontStyle="Normal" OpacityMask="#FFEC0707"/>
         </Grid>
-        <Grid Grid.Row="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="3*"/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition Height="0.5*"/>
-            </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" 
+        <TabControl x:Name="tabcntrl" Grid.Row="1"  BorderThickness="0,0,0,0">
+            <TabControl.ItemContainerStyle>
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </Style>
+            </TabControl.ItemContainerStyle>
+            <TabItem x:Name="tab1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="0.5*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" 
              HorizontalAlignment="Center" VerticalAlignment="Center" 
                        Text="Booklib" FontSize="202" FontFamily="Brush Script MT" Foreground="#FFEF041C"
                        />
-            <StackPanel Grid.Row="1">
-                <TextBlock 
+                    <StackPanel Grid.Row="1">
+                        <TextBlock 
                     Margin="100,0"
                     Text="Username" FontSize="22" />
-                <TextBox x:Name="Usernamebox"
+                        <TextBox x:Name="Usernamebox"
                     Margin="150,20"
                     Padding="10,0"
                     BorderBrush="Black"
                     BorderThickness="0,0,0,1" Background="{x:Null}"
                     />
-            </StackPanel>
-            <StackPanel Grid.Row="2">
-                <TextBlock 
+                    </StackPanel>
+                    <StackPanel Grid.Row="2">
+                        <TextBlock 
                     Margin="100,0"
                     Text="Password" FontSize="22"
                     VerticalAlignment="Center"/>
-                <Grid>
-                    <PasswordBox x:Name="passwordbox" 
+                        <Grid>
+                            <PasswordBox x:Name="passwordbox" 
                     Margin="150,20,150,20"
                     Padding="10,0"
                     BorderBrush="Black"
                     BorderThickness="0,0,0,1" Background="{x:Null}" Grid.ColumnSpan="2"
                     />
-                    <TextBox x:Name="passboxtxt" 
+                            <TextBox x:Name="passboxtxt" 
                         Padding="10,0"
                         Background="{x:Null}"
                         Visibility="Hidden" 
                         BorderThickness="0,0,0,1" BorderBrush="Black"
                         Margin="150,20,150,20" Grid.ColumnSpan="2"/>
-                </Grid>
-                <CheckBox x:Name="Showpasscheck"
+                        </Grid>
+                        <CheckBox x:Name="Showpasscheck"
                         VerticalAlignment="Center" 
                           Content="Show password"
                         Margin="150,0,530,5"
                           Width="120" Background="White" BorderBrush="#FF615F5F" Checked="Showpasscheck_Checked" Unchecked="Showpasscheck_Unchecked" 
                              >
-                </CheckBox>
-            </StackPanel>
-            <Grid Grid.Row="3">
-                <Button x:Name="Loginbtn" 
+                        </CheckBox>
+                    </StackPanel>
+                    <Grid Grid.Row="3">
+                        <Button x:Name="Loginbtn" 
                     Content="Log in"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"
@@ -88,17 +98,17 @@
                     FontFamily="Bodoni MT Black" Background="#FFEF041C" 
                     BorderBrush="{x:Null}" Click="Loginbtn_Click"
                     />
-                <TextBlock
+                        <TextBlock
                     VerticalAlignment ="Bottom"
                     HorizontalAlignment="Center"
                     Text="_________________________________________________________________________" Foreground="#FFEF041C" FontWeight="Bold"/>
-            </Grid>
-            <Grid Grid.Row="4">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-                <Button x:Name="Adminbtn" Grid.Column="0"
+                    </Grid>
+                    <Grid Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="Adminbtn" Grid.Column="0"
                     VerticalAlignment="Bottom"
                         HorizontalAlignment="Left"
                         Margin="290,0,0,6"
@@ -106,16 +116,245 @@
                         Width="100" Background="{x:Null}"
                         Content="Admin" BorderBrush="{x:Null}" 
                         Foreground="#FFEF041C" FontSize="16" FontWeight="Bold"
-                        Click="Adminbtn_Click"/>
-                <Button x:Name="Signupbtn" Grid.Column="1"
+                        Click="Admintabbtn_Click"/>
+                        <Button x:Name="Signuptabbtn" Grid.Column="1"
                         HorizontalAlignment="Left"
                         Margin="10,6,0,6"
                         Width="100" Background="{x:Null}"
                         Content="Sing up" BorderBrush="{x:Null}" 
-                        Foreground="#FFEF041C" FontSize="16" FontWeight="Bold" Click="Signupbtn_Click" 
+                        Foreground="#FFEF041C" FontSize="16" FontWeight="Bold"
+                                Click="Signuptabbtn_Click" 
                         />
-            </Grid>
-        </Grid>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="signuptab">
+                <Grid>
+                    <Grid Grid.Row="1">
+                        <ScrollViewer>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="150"/>
+                                    <RowDefinition Height="100"/>
+                                    <RowDefinition Height="100"/>
+                                    <RowDefinition Height="100"/>
+                                    <RowDefinition Height="100"/>
+                                    <RowDefinition Height="120"/>
+                                    <RowDefinition Height="101"/>
+                                    <RowDefinition Height="100"/>
+                                    <RowDefinition Height="50"/>
+                                </Grid.RowDefinitions>
 
+                                <TextBlock Grid.Row="0" 
+                            HorizontalAlignment="Center" 
+                            VerticalAlignment="Center" 
+                            Text="Sign up" FontSize="100" 
+                            FontFamily="Brush Script MT" 
+                            Foreground="#FFEF041C"
+                            />
+                                <StackPanel Grid.Row="1">
+                                    <TextBlock 
+                                 Margin="100,0"
+                                 Text="Name" FontSize="22" />
+                                    <TextBox x:Name="Namebox"
+                                Margin="150,20"
+                                Padding="10,0"
+                                BorderBrush="#FFEF041C"
+                                BorderThickness="0,0,0,2" Background="{x:Null}" SelectionBrush="{x:Null}" SelectionTextBrush="{x:Null}" OpacityMask="#FFEF041C"
+                                />
+                                </StackPanel>
+                                <StackPanel Grid.Row="2">
+                                    <TextBlock 
+                                 Margin="100,0"
+                                 Text="Lastname" FontSize="22" />
+                                    <TextBox x:Name="Lastnamebox"
+                                Margin="150,20"
+                                Padding="10,0"
+                                BorderBrush="#FFE80808"
+                                BorderThickness="0,0,0,2" Background="{x:Null}"
+                                />
+                                </StackPanel>
+                                <StackPanel Grid.Row="3">
+                                    <TextBlock 
+                                 Margin="100,0"
+                                 Text="Phone" FontSize="22" />
+                                    <TextBox x:Name="Phonebox"
+                                Margin="150,20"
+                                Padding="10,0"
+                                BorderBrush="#FFEF041C"
+                                BorderThickness="0,0,0,2" Background="{x:Null}"
+                                 PreviewTextInput="Phonebox_PreviewTextInput"
+                                />
+                                </StackPanel>
+                                <StackPanel Grid.Row="4">
+                                    <TextBlock 
+                                 Margin="100,0"
+                                 Text="Email" FontSize="22" />
+                                    <TextBox x:Name="Emailbox"
+                                Margin="150,20"
+                                Padding="10,0"
+                                BorderBrush="#FFEF041C"
+                                BorderThickness="0,0,0,2" Background="{x:Null}"
+                                />
+                                </StackPanel>
+                                <StackPanel Grid.Row="5">
+                                    <TextBlock 
+                                 Margin="100,0"
+                                Text="Password" FontSize="22"
+                                VerticalAlignment="Center"/>
+                                    <Grid>
+                                        <PasswordBox x:Name="signuppasswordbox" 
+                    Margin="150,20,150,20"
+                    Padding="10,0"
+                    BorderBrush="#FFEF041C"
+                    BorderThickness="0,0,0,2" Background="{x:Null}" Grid.ColumnSpan="2"
+                    />
+                                        <TextBox x:Name="signuppassboxtxt" 
+                        Padding="10,0"
+                        Background="{x:Null}"
+                        Visibility="Hidden" 
+                        BorderThickness="0,0,0,2" BorderBrush="#FFEF041C"
+                        Margin="150,20,150,20" Grid.ColumnSpan="2"/>
+                                    </Grid>
+                                </StackPanel>
+                                <StackPanel Grid.Row="6">
+                                    <TextBlock 
+                    Margin="100,0"
+                    Text="Confirm Password" FontSize="22"
+                    VerticalAlignment="Center"/>
+                                    <Grid>
+                                        <PasswordBox x:Name="confirmpasswordbox" 
+                    Margin="150,20,150,20"
+                    Padding="10,0"
+                    BorderBrush="#FFEF041C"
+                    BorderThickness="0,0,0,2" Background="{x:Null}" Grid.ColumnSpan="2"
+                    />
+                                        <TextBox x:Name="confirmpassboxtxt" 
+                        Padding="10,0"
+                        Background="{x:Null}"
+                        Visibility="Hidden" 
+                        BorderThickness="0,0,0,2" BorderBrush="#FFEF041C"
+                        Margin="150,20,150,20" Grid.ColumnSpan="2"/>
+                                    </Grid>
+                                    <CheckBox x:Name="signupShowpasscheck"
+                        VerticalAlignment="Center" 
+                          Content="Show password"
+                        Margin="150,0,500,5"
+                          Width="150" Background="White" BorderBrush="#FF615F5F" 
+                             Checked="signupShowpasscheck_Checked" 
+                             Unchecked="signupShowpasscheck_Unchecked" 
+                             >
+                                    </CheckBox>
+                                </StackPanel>
+                                <Grid Grid.Row="7">
+                                    <Button x:Name="Signupbtn" 
+                                Content="Signup"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Height="60"
+                                Width="500" FontSize="30" Foreground="White" 
+                                FontFamily="Bodoni MT Black" Background="#FFEF041C" 
+                                BorderBrush="{x:Null}" Click="Signuptabbtn_Click"
+                            />
+                                </Grid>
+                                <Grid Grid.Row="8">
+                                    <Button x:Name="Backbtn" 
+                                        BorderBrush="{x:Null}" 
+                                        FontFamily="Forte"
+                                        FontWeight="Normal" FontStyle="Normal" 
+                                        Click="Backbtn_Click" 
+                                        Content="Back"
+                                        VerticalAlignment="Top"
+                                        HorizontalAlignment="Center" Foreground="#FFEF041C" Background="{x:Null}" FontSize="18"
+                                            
+                                            />
+                                </Grid>
+                            </Grid>
+                        </ScrollViewer>
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="admintab">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="3*"/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition Height="50"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" 
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" 
+                       Text="Admin" FontSize="202" 
+                       FontFamily="Brush Script MT" 
+                       Foreground="#FFEF041C" FontStyle="Normal" FontWeight="Normal"
+                       />
+                    <StackPanel Grid.Row="1">
+                        <TextBlock 
+                    Margin="100,0"
+                    Text="Username" FontSize="22" />
+                        <TextBox x:Name="Adminnamebox"
+                    Margin="150,20"
+                    Padding="10,0"
+                    BorderBrush="Black"
+                    BorderThickness="0,0,0,2" Background="{x:Null}"
+                    />
+                    </StackPanel>
+                    <StackPanel Grid.Row="2">
+                        <TextBlock 
+                    Margin="100,0"
+                    Text="Password" FontSize="22"
+                    VerticalAlignment="Center"/>
+                        <Grid>
+                            <PasswordBox x:Name="Adminpasswordbox" 
+                    Margin="150,20,150,20"
+                    Padding="10,0"
+                    BorderBrush="Black"
+                    BorderThickness="0,0,0,1" Background="{x:Null}"
+                    />
+                            <TextBox x:Name="Adminpassboxtxt" 
+                        Padding="10,0"
+                        Background="{x:Null}"
+                        Visibility="Hidden" 
+                        BorderThickness="0,0,0,1" BorderBrush="Black"
+                        Margin="150,20,150,20"/>
+                        </Grid>
+                        <CheckBox x:Name="AdminShowpasscheck" Grid.Column="1"
+                        VerticalAlignment="Center" 
+                          Content="Show password"
+                        Margin="150,0,540,5"
+                          Width="110" Background="White" BorderBrush="#FF615F5F" Checked="AdminShowpasscheck_Checked" Unchecked="AdminShowpasscheck_Unchecked" 
+                             >
+                        </CheckBox>
+                    </StackPanel>
+                    <Grid Grid.Row="3">
+                        <Button x:Name="AdminLoginbtn" 
+                    Content="Log in"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Height="60"
+                    Width="500" FontSize="30" Foreground="White" 
+                    FontFamily="Bodoni MT Black" Background="#FFEF041C" 
+                    BorderBrush="{x:Null}" Click="AdminLoginbtn_Click" Grid.ColumnSpan="2" Margin="150,0,0,0"
+                    />
+
+                    </Grid>
+                    <Grid Grid.Row="4">
+                        <Button x:Name="adminBackbtn" 
+                                        BorderBrush="{x:Null}" 
+                                        FontFamily="Forte"
+                                        FontWeight="Normal" FontStyle="Normal" 
+                                        Click="Backbtn_Click" 
+                                        Content="Back"
+                                        VerticalAlignment="Top"
+                                        HorizontalAlignment="Center"
+                                        Foreground="#FFEF041C" Background="{x:Null}" 
+                                        FontSize="18"
+                                            />
+                    </Grid>
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

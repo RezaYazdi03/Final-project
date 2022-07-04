@@ -24,34 +24,23 @@ namespace firstpage
 			InitializeComponent();
 		}
 
-		private void Closebtn_Click(object sender, RoutedEventArgs e)
-		{
-			this.Close();
-		}
-
-		private void Loginbtn_Click(object sender, RoutedEventArgs e)
+		private void AdminLoginbtn_Click(object sender, RoutedEventArgs e)
 		{
 
 		}
 
-		private void Backbtn_Click(object sender, RoutedEventArgs e)
+		private void AdminShowpasscheck_Checked(object sender, RoutedEventArgs e)
 		{
-			MainWindow mainWindow = new MainWindow();
-			mainWindow.Show();
-			this.Close();
-		}
-		private void Showpasscheck_Checked(object sender, RoutedEventArgs e)
-		{
-			passwordbox.Visibility = Visibility.Hidden;
-			passboxtxt.Text = passwordbox.Password;
-			passboxtxt.Visibility = Visibility.Visible;
+			Adminpasswordbox.Visibility = Visibility.Hidden;
+			Adminpassboxtxt.Text = Adminpasswordbox.Password;
+			Adminpassboxtxt.Visibility = Visibility.Visible;
 		}
 
-		private void Showpasscheck_Unchecked(object sender, RoutedEventArgs e)
+		private void AdminShowpasscheck_Unchecked(object sender, RoutedEventArgs e)
 		{
-			passboxtxt.Visibility = Visibility.Hidden;
-			passwordbox.Password = passboxtxt.Text;
-			passwordbox.Visibility = Visibility.Visible;
+			Adminpassboxtxt.Visibility = Visibility.Hidden;
+			Adminpasswordbox.Password = Adminpassboxtxt.Text;
+			Adminpasswordbox.Visibility = Visibility.Visible;
 		}
 	}
 }
