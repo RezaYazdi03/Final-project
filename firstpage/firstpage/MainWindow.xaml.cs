@@ -152,5 +152,10 @@ namespace firstpage
 			Adminpasswordbox.Password = Adminpassboxtxt.Text;
 			Adminpasswordbox.Visibility = Visibility.Visible;
 		}
+
+		private void Namebox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			e.Handled = !(Regex.IsMatch(e.Text, "^[a-zA-Z]$"));
+		}
 	}
 }
