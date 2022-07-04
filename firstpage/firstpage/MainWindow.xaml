@@ -45,7 +45,7 @@
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
-                            <RowDefinition Height="0.5*"/>
+                            <RowDefinition Height="0.6*"/>
                         </Grid.RowDefinitions>
                         <TextBlock Grid.Row="0" 
                             HorizontalAlignment="Center" 
@@ -60,11 +60,11 @@
                     Margin="100,0"
                     Text="Username" FontSize="22" />
                             <TextBox x:Name="Usernamebox"
-                    Margin="150,20"
-                    Padding="10,0"
-                    BorderBrush="Black"
-                    BorderThickness="0,0,0,1" Background="{x:Null}"
-                    />
+                                Margin="150,20"
+                                Padding="10,0"
+                                BorderBrush="Black"
+                                BorderThickness="0,0,0,2" Background="{x:Null}"
+                                />
                         </StackPanel>
                         <StackPanel Grid.Row="2">
                             <TextBlock 
@@ -73,17 +73,19 @@
                     VerticalAlignment="Center"/>
                             <Grid>
                                 <PasswordBox x:Name="passwordbox" 
-                    Margin="150,20,150,20"
-                    Padding="10,0"
-                    BorderBrush="Black"
-                    BorderThickness="0,0,0,1" Background="{x:Null}" Grid.ColumnSpan="2"
-                    />
+                                    Margin="150,20,150,20"
+                                    Padding="10,0"
+                                    BorderBrush="Black"
+                                    BorderThickness="0,0,0,2" Background="{x:Null}" Grid.ColumnSpan="2"
+                                    />
                                 <TextBox x:Name="passboxtxt" 
-                        Padding="10,0"
-                        Background="{x:Null}"
-                        Visibility="Hidden" 
-                        BorderThickness="0,0,0,1" BorderBrush="Black"
-                        Margin="150,20,150,20" Grid.ColumnSpan="2"/>
+                                   Padding="10,0"
+                                    Background="{x:Null}"
+                                    Visibility="Hidden" 
+                                    BorderThickness="0,0,0,2" 
+                                    BorderBrush="Black"
+                                    Margin="150,20,150,20" 
+                                    />
                             </Grid>
                             <CheckBox x:Name="Showpasscheck"
                         VerticalAlignment="Center" 
@@ -147,8 +149,8 @@
                                     <RowDefinition Height="100"/>
                                     <RowDefinition Height="100"/>
                                     <RowDefinition Height="100"/>
-                                    <RowDefinition Height="110"/>
-                                    <RowDefinition Height="101"/>
+                                    <RowDefinition Height="100"/>
+                                    <RowDefinition Height="150"/>
                                     <RowDefinition Height="100"/>
                                     <RowDefinition Height="50"/>
                                 </Grid.RowDefinitions>
@@ -174,7 +176,9 @@
                                         OpacityMask="#FFEF041C"
                                         PreviewTextInput="Namebox_PreviewTextInput"
                                         />
-                                </StackPanel>
+                                <TextBlock x:Name="signupnameerrorbox" 
+                                    HorizontalAlignment="Center" Foreground="#FF00349A"/>
+                            </StackPanel>
                                 <StackPanel x:Name="Lastnamepnl" Grid.Row="2">
                                     <TextBlock 
                                  Margin="100,0"
@@ -183,9 +187,13 @@
                                        Margin="150,20"
                                        Padding="10,0"
                                         BorderBrush="#FFE80808"
-                                        BorderThickness="0,0,0,2" Background="{x:Null}"
-                                             PreviewTextInput="Namebox_PreviewTextInput"
+                                        BorderThickness="0,0,0,2" 
+                                        Background="{x:Null}"
+                                        PreviewTextInput="Namebox_PreviewTextInput"
                                         />
+                                    <TextBlock x:Name="signuplastnameerrorbox" 
+                                               Foreground="#FF00349A"
+                                               HorizontalAlignment="Center"/>
                                 </StackPanel>
                                 <StackPanel x:Name="Phonepnl" Grid.Row="3">
                                     <TextBlock 
@@ -198,17 +206,25 @@
                                         BorderThickness="0,0,0,2" Background="{x:Null}"
                                         PreviewTextInput="Phonebox_PreviewTextInput"
                                         />
+                                    <TextBlock x:Name="signupphoneerrorbox" 
+                                               Foreground="#FF00349A" 
+                                               HorizontalAlignment="Center"/>
                                 </StackPanel>
                                 <StackPanel x:Name="Emailpnl" Grid.Row="4">
                                     <TextBlock 
                                  Margin="100,0"
                                  Text="Email" FontSize="22" />
                                     <TextBox x:Name="Emailbox"
-                                Margin="150,20"
-                                Padding="10,0"
-                                BorderBrush="#FFEF041C"
-                                BorderThickness="0,0,0,2" Background="{x:Null}"
-                                />
+                                        Margin="150,20"
+                                        Padding="10,0"
+                                        BorderBrush="#FFEF041C"
+                                        BorderThickness="0,0,0,2" Background="{x:Null}"
+                                        PreviewTextInput="Emailbox_PreviewTextInput"
+                                            />
+                                    <TextBlock x:Name="signupemailerrorbox" 
+                                               Foreground="#FF00349A"
+                                               HorizontalAlignment="Center"
+                                               />
                                 </StackPanel>
                                 <StackPanel x:Name="Passwordpnl" Grid.Row="5">
                                     <TextBlock 
@@ -217,38 +233,52 @@
                                 VerticalAlignment="Center"/>
                                     <Grid>
                                         <PasswordBox x:Name="signuppasswordbox" 
-                    Margin="150,20,150,20"
-                    Padding="10,0"
-                    BorderBrush="#FFEF041C"
-                    BorderThickness="0,0,0,2" Background="{x:Null}" Grid.ColumnSpan="2"
-                    />
+                                            Margin="150,20,150,20"
+                                            Padding="10,0"
+                                            BorderBrush="#FFEF041C"
+                                            BorderThickness="0,0,0,2" Background="{x:Null}" 
+                                            Grid.ColumnSpan="2"
+                                            PreviewTextInput="signuppassboxtxt_PreviewTextInput"
+                                            />
                                         <TextBox x:Name="signuppassboxtxt" 
-                        Padding="10,0"
-                        Background="{x:Null}"
-                        Visibility="Hidden" 
-                        BorderThickness="0,0,0,2" BorderBrush="#FFEF041C"
-                        Margin="150,20,150,20" Grid.ColumnSpan="2"/>
+                                            Padding="10,0"
+                                            Background="{x:Null}"
+                                            Visibility="Hidden" 
+                                            BorderThickness="0,0,0,2" BorderBrush="#FFEF041C"
+                                            Margin="150,20,150,20" Grid.ColumnSpan="2"
+                                            PreviewTextInput="signuppassboxtxt_PreviewTextInput"/>
                                     </Grid>
+                                    <TextBlock x:Name="signuppassworderrorbox"
+                                               Foreground="#FF00349A" 
+                                               HorizontalAlignment="Center"/>
                                 </StackPanel>
                                 <StackPanel x:Name="Confirmpasspnl" Grid.Row="6">
                                     <TextBlock 
-                    Margin="100,0"
-                    Text="Confirm Password" FontSize="22"
-                    VerticalAlignment="Center"/>
+                                        Margin="100,0"
+                                        Text="Confirm Password" FontSize="22"
+                                        HorizontalAlignment="Left"/>
                                     <Grid>
                                         <PasswordBox x:Name="confirmpasswordbox" 
-                    Margin="150,20,150,20"
-                    Padding="10,0"
-                    BorderBrush="#FFEF041C"
-                    BorderThickness="0,0,0,2" Background="{x:Null}" Grid.ColumnSpan="2"
-                    />
+                                            Margin="150,20,150,20"
+                                            Padding="10,0"
+                                            BorderBrush="#FFEF041C"
+                                            BorderThickness="0,0,0,2" Background="{x:Null}" 
+                                            PreviewTextInput="confirmpasswordbox_PreviewTextInput"
+                                            />
                                         <TextBox x:Name="confirmpassboxtxt" 
-                        Padding="10,0"
-                        Background="{x:Null}"
-                        Visibility="Hidden" 
-                        BorderThickness="0,0,0,2" BorderBrush="#FFEF041C"
-                        Margin="150,20,150,20" Grid.ColumnSpan="2"/>
+                                            Padding="10,0"
+                                            Background="{x:Null}"
+                                            Visibility="Hidden" 
+                                            BorderThickness="0,0,0,2" 
+                                            BorderBrush="#FFEF041C"
+                                            Margin="150,20,150,20" 
+                                            PreviewTextInput="confirmpasswordbox_PreviewTextInput"
+                                            />
                                     </Grid>
+                                    <TextBlock x:Name="signupconfirmpassbox" 
+                                               Foreground="#FF00349A"
+                                               HorizontalAlignment="Center"
+                                               />
                                     <CheckBox x:Name="signupShowpasscheck"
                         VerticalAlignment="Center" 
                           Content="Show password"
@@ -269,7 +299,7 @@
                                             Margin="150,0,150,0"
                                 Width="500" FontSize="30" Foreground="White" 
                                 FontFamily="Bodoni MT Black" Background="#FFEF041C" 
-                                BorderBrush="{x:Null}" Click="Signuptabbtn_Click"
+                                BorderBrush="{x:Null}" Click="Signupbtn_Click"
                             />
                                 </Grid>
                                 <Grid Grid.Row="8">

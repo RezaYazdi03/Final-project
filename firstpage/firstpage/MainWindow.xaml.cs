@@ -58,7 +58,6 @@ namespace firstpage
 			
 		}
 
-
 		private void Admintabbtn_Click(object sender, RoutedEventArgs e)
 		{
 			tabcntrl.SelectedIndex = 2;
@@ -68,6 +67,8 @@ namespace firstpage
 		{
 			tabcntrl.SelectedIndex = 1;
 		}
+
+
 
 		private void signupShowpasscheck_Checked(object sender, RoutedEventArgs e)
 		{
@@ -92,47 +93,70 @@ namespace firstpage
 		private void Signupbtn_Click(object sender, RoutedEventArgs e)
 		{
 			string Name = Namebox.Text;
+			string Lastname = Lastnamebox.Text;
+			string Phone = Phonebox.Text;
+			string Email = Emailbox.Text;
+			string Password = signuppasswordbox.Password;
+			string Confirmpassword = confirmpasswordbox.Password;
+			int flg = 0;
+
 			if (!Name_Check(Name))
 			{
-				/*write later*/
+				flg = 1 ;
+				signupnameerrorbox.Text = "Name should contain between 3 to 32 character!";
 			}
-			string Lastname = Lastnamebox.Text;
 			if (!Name_Check(Lastname))
 			{
-				/*write later*/
+				flg = 1 ;
+				signuplastnameerrorbox.Text = "Lastname should contain between 3 to 32 character!";
 			}
-			try { int Phone = int.Parse(Phonebox.Text); }
-			catch
+			if (!Phone_Check(Phone))
 			{
-				/*write later*/
+				flg = 1 ;
+				signupphoneerrorbox.Text = "Phone number should start with 09 and has 11 digit!";
 			}
-			string Email = Emailbox.Text;
-			if (Email_check(Email))
+			if (!Email_check(Email))
 			{
-				/*write later*/
+				flg = 1 ;
+				signupemailerrorbox.Text = "It's not in email form!";
 			}
-			string Password = passwordbox.Password;
-			string Confirmpassword = confirmpasswordbox.Password;
-
-
+			if (!Password_Check(Password))
+			{
+				flg = 1;
+				signuppassworderrorbox.Text = "Password should atleast has 8 character and contain upper and lowercase char !";
+			}
+			if(Password != Confirmpassword)
+			{
+				flg = 1;
+				signupconfirmpassbox.Text = "It should be same as password!";
+			}
+			if ( flg == 0 )
+			{
+				/*add a user with this datas*/
+				return;
+			}
 		}
-		static bool Name_Check(string Name)
+
+		private void Namebox_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
-			if (Regex.IsMatch(Name, "^[a-zA-Z]{3,32}$"))
+			if (sender == Namebox)
 			{
-				return true;
+				signupnameerrorbox.Text = "";
 			}
-			return false;
-		}
-		static bool Email_check(string Email)
-		{
-			return false;
+			if (sender == Lastnamebox)
+			{
+				signuplastnameerrorbox.Text = "";
+			}
+			e.Handled = !(Regex.IsMatch(e.Text, "^[a-zA-Z]$"));
 		}
 
 		private void Phonebox_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
+			signupphoneerrorbox.Text = "";
 			e.Handled = Regex.IsMatch(e.Text, "[^0-9]+");
 		}
+
+
 
 		private void AdminLoginbtn_Click(object sender, RoutedEventArgs e)
 		{
@@ -153,9 +177,52 @@ namespace firstpage
 			Adminpasswordbox.Visibility = Visibility.Visible;
 		}
 
-		private void Namebox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		bool Name_Check(string Name)
 		{
-			e.Handled = !(Regex.IsMatch(e.Text, "^[a-zA-Z]$"));
+			if (Regex.IsMatch(Name, "^[a-zA-Z]{3,32}$"))
+			{
+				return true;
+			}
+			return false;
+		}
+		bool Phone_Check(string Number)
+		{
+			if (Regex.IsMatch(Number,"^(09)[0-9]{9}$"))
+			{
+				return true;
+			}
+			return false;
+		}
+		bool Email_check(string Email)
+		{
+			if (Regex.IsMatch(Email, @"^[a-zA-Z0-9.! #$%&'*+/=? ^_`{|}~-]{1,32}@[a-zA-Z0-9-]{1,32}(?:\.[a-zA-Z0-9-]{1,32})*$"))
+			{
+				return true;
+			}
+			return false;
+		}
+		bool Password_Check(string password)
+		{
+			if (Regex.IsMatch(password, @"^(?=.*[A-Z])(?=.*[a-z])\w{8,40}$"))
+			{
+				return true;
+			}
+			return false;
+		}
+
+		private void Emailbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			signupemailerrorbox.Text = "";
+		}
+
+		private void signuppassboxtxt_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			signuppassworderrorbox.Text = "";
+		}
+
+		private void confirmpasswordbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			signupconfirmpassbox.Text = "";
 		}
 	}
 }
