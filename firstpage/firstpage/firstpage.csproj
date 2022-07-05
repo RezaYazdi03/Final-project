@@ -7,4 +7,16 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="clipart85921.png" />
+    <None Remove="e214010374528ccb2f8d14e48244295b.png" />
+    <None Remove="white-shopping-cart-icon-png-25.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="clipart85921.png" />
+    <Resource Include="e214010374528ccb2f8d14e48244295b.png" />
+    <Resource Include="white-shopping-cart-icon-png-25.jpg" />
+  </ItemGroup>
+
 </Project>

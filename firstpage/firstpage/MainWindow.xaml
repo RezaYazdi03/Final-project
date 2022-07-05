@@ -8,6 +8,7 @@
         Title="MainWindow" Height="700" Width="800"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
         BorderThickness="0,0,0,0"
+        MinWidth="550"
         >
 
     <Grid x:Name="maingrid" >
@@ -53,7 +54,7 @@
                             Text="Booklib" FontSize="202"
                             FontFamily="Brush Script MT" 
                             Foreground="#FFEF041C"
-                            Margin="100,0,100,0"
+                            Margin="0,0,0,0"
                        />
                         <StackPanel Grid.Row="1">
                             <TextBlock 
@@ -171,7 +172,7 @@
                                 <TextBlock Grid.Row="0" 
                                     HorizontalAlignment="Center" 
                                     VerticalAlignment="Center" 
-                                    Margin="100,0,100,0"
+                                    Margin="0"
                                     Text="Sign up" FontSize="100" 
                                     FontFamily="Brush Script MT" 
                                     Foreground="#FFEF041C"
@@ -348,7 +349,7 @@
                             FontFamily="Brush Script MT" 
                             Foreground="#FFEF041C" 
                             FontStyle="Normal" FontWeight="Normal"
-                            Margin="100,0,100,0"
+                            Margin="0"
                             />
                         <StackPanel Grid.Row="1">
                             <TextBlock 

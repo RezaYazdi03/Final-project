@@ -1,0 +1,72 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\yazdi-pc\\Desktop\\Final-project\\firstpage\\firstpage\\firstpage.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\yazdi-pc\\Desktop\\Final-project\\firstpage\\firstpage\\firstpage.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\yazdi-pc\\Desktop\\Final-project\\firstpage\\firstpage\\firstpage.csproj",
+        "projectName": "firstpage",
+        "projectPath": "C:\\Users\\yazdi-pc\\Desktop\\Final-project\\firstpage\\firstpage\\firstpage.csproj",
+        "packagesPath": "C:\\Users\\yazdi-pc\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\yazdi-pc\\Desktop\\Final-project\\firstpage\\firstpage\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\yazdi-pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0-windows7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\Microsoft.EntityFrameworkCore.SqlServer": {},
+          "C:\\Users\\yazdi-pc\\Downloads": {},
+          "https://packagesource": {},
+          "https://www.nuget.org/": {}
+        },
+        "frameworks": {
+          "net6.0-windows7.0": {
+            "targetAlias": "net6.0-windows",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0-windows7.0": {
+          "targetAlias": "net6.0-windows",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            },
+            "Microsoft.WindowsDesktop.App.WPF": {
+              "privateAssets": "none"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

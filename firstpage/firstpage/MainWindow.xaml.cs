@@ -37,7 +37,7 @@ namespace firstpage
 		
 		public static int User_Check(string username , string password)
 		{
-			if (/*username and password was ok*/false)
+			if (/*username and password was ok*/true)
 			{
 				return 1;
 			}
@@ -160,6 +160,10 @@ namespace firstpage
 				case 1:
 					{
 						//open app
+						//send usersdata to it
+						UserMainPage userMainPage = new UserMainPage();
+						userMainPage.Show();
+						this.Close();
 						break;
 					}
 				case 0:
