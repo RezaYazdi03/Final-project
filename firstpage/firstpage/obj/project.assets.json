@@ -33,6 +33,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\Microsoft.EntityFrameworkCore.SqlServer": {},
         "C:\\Users\\yazdi-pc\\Downloads": {},
         "https://packagesource": {},
         "https://www.nuget.org/": {}

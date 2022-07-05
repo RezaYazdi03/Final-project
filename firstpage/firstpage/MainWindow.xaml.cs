@@ -19,6 +19,106 @@ namespace firstpage
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
+	class User
+	{
+		string Username;
+		string password;
+		static List<User> users = new List<User>();
+
+		public User(string Username , string Password)
+		{
+			this.Username = Username;
+			this.password = Password;
+		}
+		static User()
+		{
+			//extract data from database and put in users list
+		}
+		
+		public static int User_Check(string username , string password)
+		{
+			if (/*username and password was ok*/false)
+			{
+				return 1;
+			}
+			if (/*username exist but password wass incorrect*/false)
+			{
+				return 0;
+			}
+			return -1;
+		}
+
+
+		public static bool Name_Check(string Name)
+		{
+			if (Regex.IsMatch(Name, "^[a-zA-Z]{3,32}$"))
+			{
+				return true;
+			}
+			return false;
+		}
+		public static bool Phone_Check(string Number)
+		{
+			if (Regex.IsMatch(Number, "^(09)[0-9]{9}$"))
+			{
+				return true;
+			}
+			return false;
+		}
+		public static bool Email_check(string Email)
+		{
+			if (Regex.IsMatch(Email, @"^[a-zA-Z0-9.! #$%&'*+/=? ^_`{|}~-]{1,32}@[a-zA-Z0-9-]{1,32}(?:\.[a-zA-Z0-9-]{1,32})*$"))
+			{
+				return true;
+			}
+			return false;
+		}
+		public static bool Password_Check(string password)
+		{
+			if (Regex.IsMatch(password, @"^(?=.*[A-Z])(?=.*[a-z])\w{8,40}$"))
+			{
+				return true;
+			}
+			return false;
+		}
+		public static bool Email_Already_Exist(string email)
+		{
+			if (/*Email already exist*/false)
+			{
+				return true;
+			}
+			return false;
+		}
+	}
+	class Admin
+	{
+		string Username;
+		string Password;
+
+		public Admin(string Username, string Password)
+		{
+			this.Username = Username;
+			this.Password = Password;
+		}
+		static Admin()
+		{
+			//extract data from database and put in users list
+		}
+
+		public static int Admin_Check(string username, string password)
+		{
+			if (/*username and password was ok*/false)
+			{
+				return 1;
+			}
+			if (/*username exist but password wass incorrect*/false)
+			{
+				return 0;
+			}
+			return -1;
+		}
+	}
+
 	public partial class MainWindow : Window
 	{
 		public MainWindow()
@@ -55,7 +155,27 @@ namespace firstpage
 		{
 			string username = Usernamebox.Text;
 			string password = passwordbox.Password;
-			
+			switch (User.User_Check(username , password))
+			{
+				case 1:
+					{
+						//open app
+						break;
+					}
+				case 0:
+					{
+						signinwrongpasswordbox.Text = "Wrong password";
+						break;
+					}
+				case -1:
+					{
+						signinwronusernameerrorbox.Text = "This username doesn't exist!";
+						break;
+					}
+				default:
+					break;
+			}
+
 		}
 
 		private void Admintabbtn_Click(object sender, RoutedEventArgs e)
@@ -100,27 +220,32 @@ namespace firstpage
 			string Confirmpassword = confirmpasswordbox.Password;
 			int flg = 0;
 
-			if (!Name_Check(Name))
+			if (!User.Name_Check(Name))
 			{
 				flg = 1 ;
 				signupnameerrorbox.Text = "Name should contain between 3 to 32 character!";
 			}
-			if (!Name_Check(Lastname))
+			if (!User.Name_Check(Lastname))
 			{
 				flg = 1 ;
 				signuplastnameerrorbox.Text = "Lastname should contain between 3 to 32 character!";
 			}
-			if (!Phone_Check(Phone))
+			if (!User.Phone_Check(Phone))
 			{
 				flg = 1 ;
 				signupphoneerrorbox.Text = "Phone number should start with 09 and has 11 digit!";
 			}
-			if (!Email_check(Email))
+			if (!User.Email_check(Email))
 			{
 				flg = 1 ;
 				signupemailerrorbox.Text = "It's not in email form!";
 			}
-			if (!Password_Check(Password))
+			else if (User.Email_Already_Exist(Email))
+			{
+				flg = 1;
+				signupemailerrorbox.Text = "This email already signedup!";
+			}
+			if (!User.Password_Check(Password))
 			{
 				flg = 1;
 				signuppassworderrorbox.Text = "Password should atleast has 8 character and contain upper and lowercase char !";
@@ -133,6 +258,7 @@ namespace firstpage
 			if ( flg == 0 )
 			{
 				/*add a user with this datas*/
+				tabcntrl.SelectedIndex = 0;
 				return;
 			}
 		}
@@ -160,7 +286,28 @@ namespace firstpage
 
 		private void AdminLoginbtn_Click(object sender, RoutedEventArgs e)
 		{
-
+			string Username = Adminnamebox.Text;
+			string Password = Adminpassboxtxt.Text;
+			switch (Admin.Admin_Check(Username,Password))
+			{
+				case 1:
+					{
+						//Open admin page
+						break;
+					}
+				case 0:
+					{
+						Adminpassworderrorbox.Text = "Wrong password!";
+						break;
+					}
+				case -1:
+					{
+						Adminusernameerrorbox.Text = "This Admin doesn't exist!";
+						break;
+					}
+				default:
+					break;
+			}
 		}
 
 		private void AdminShowpasscheck_Checked(object sender, RoutedEventArgs e)
@@ -177,39 +324,6 @@ namespace firstpage
 			Adminpasswordbox.Visibility = Visibility.Visible;
 		}
 
-		bool Name_Check(string Name)
-		{
-			if (Regex.IsMatch(Name, "^[a-zA-Z]{3,32}$"))
-			{
-				return true;
-			}
-			return false;
-		}
-		bool Phone_Check(string Number)
-		{
-			if (Regex.IsMatch(Number,"^(09)[0-9]{9}$"))
-			{
-				return true;
-			}
-			return false;
-		}
-		bool Email_check(string Email)
-		{
-			if (Regex.IsMatch(Email, @"^[a-zA-Z0-9.! #$%&'*+/=? ^_`{|}~-]{1,32}@[a-zA-Z0-9-]{1,32}(?:\.[a-zA-Z0-9-]{1,32})*$"))
-			{
-				return true;
-			}
-			return false;
-		}
-		bool Password_Check(string password)
-		{
-			if (Regex.IsMatch(password, @"^(?=.*[A-Z])(?=.*[a-z])\w{8,40}$"))
-			{
-				return true;
-			}
-			return false;
-		}
-
 		private void Emailbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
 			signupemailerrorbox.Text = "";
@@ -223,6 +337,27 @@ namespace firstpage
 		private void confirmpasswordbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
 		{
 			signupconfirmpassbox.Text = "";
+		}
+
+		private void Usernamebox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			signinwronusernameerrorbox.Text = "";
+		}
+
+		private void passwordbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			signinwrongpasswordbox.Text = "";
+		}
+
+
+		private void Adminnamebox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			Adminusernameerrorbox.Text = "";
+		}
+
+		private void Adminpasswordbox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			Adminpassworderrorbox.Text = "";
 		}
 	}
 }

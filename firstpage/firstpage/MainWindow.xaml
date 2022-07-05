@@ -64,7 +64,12 @@
                                 Padding="10,0"
                                 BorderBrush="Black"
                                 BorderThickness="0,0,0,2" Background="{x:Null}"
+                                PreviewTextInput="Usernamebox_PreviewTextInput"
                                 />
+                            <TextBlock x:Name="signinwronusernameerrorbox" 
+                                       Foreground="#FF00349A" 
+                                       HorizontalAlignment="Center"
+                                       />
                         </StackPanel>
                         <StackPanel Grid.Row="2">
                             <TextBlock 
@@ -76,7 +81,10 @@
                                     Margin="150,20,150,20"
                                     Padding="10,0"
                                     BorderBrush="Black"
-                                    BorderThickness="0,0,0,2" Background="{x:Null}" Grid.ColumnSpan="2"
+                                    BorderThickness="0,0,0,2" 
+                                    Background="{x:Null}" 
+                                    Grid.ColumnSpan="2"
+                                    PreviewTextInput="passwordbox_PreviewTextInput"
                                     />
                                 <TextBox x:Name="passboxtxt" 
                                    Padding="10,0"
@@ -85,8 +93,13 @@
                                     BorderThickness="0,0,0,2" 
                                     BorderBrush="Black"
                                     Margin="150,20,150,20" 
+                                    PreviewTextInput="passwordbox_PreviewTextInput"
                                     />
                             </Grid>
+                            <TextBlock x:Name="signinwrongpasswordbox"
+                                       Foreground="#FF00349A"
+                                       HorizontalAlignment="Center"
+                                />
                             <CheckBox x:Name="Showpasscheck"
                         VerticalAlignment="Center" 
                                       HorizontalAlignment="Left"
@@ -176,9 +189,9 @@
                                         OpacityMask="#FFEF041C"
                                         PreviewTextInput="Namebox_PreviewTextInput"
                                         />
-                                <TextBlock x:Name="signupnameerrorbox" 
+                                    <TextBlock x:Name="signupnameerrorbox" 
                                     HorizontalAlignment="Center" Foreground="#FF00349A"/>
-                            </StackPanel>
+                                </StackPanel>
                                 <StackPanel x:Name="Lastnamepnl" Grid.Row="2">
                                     <TextBlock 
                                  Margin="100,0"
@@ -342,11 +355,17 @@
                     Margin="100,0"
                     Text="Username" FontSize="22" />
                             <TextBox x:Name="Adminnamebox"
-                    Margin="150,20"
-                    Padding="10,0"
-                    BorderBrush="Black"
-                    BorderThickness="0,0,0,2" Background="{x:Null}"
-                    />
+                                Margin="150,20"
+                                Padding="10,0"
+                                BorderBrush="Black"
+                                BorderThickness="0,0,0,2" 
+                                Background="{x:Null}"
+                                PreviewTextInput="Adminnamebox_PreviewTextInput"
+                                />
+                            <TextBlock x:Name="Adminusernameerrorbox"
+                                       HorizontalAlignment="Center" 
+                                       Foreground="#FF00349A"
+                                       />
                         </StackPanel>
                         <StackPanel Grid.Row="2">
                             <TextBlock 
@@ -358,15 +377,24 @@
                                     Margin="150,20,150,20"
                                     Padding="10,0"
                                     BorderBrush="Black"
-                                    BorderThickness="0,0,0,2" Background="{x:Null}"
+                                    BorderThickness="0,0,0,2"
+                                    Background="{x:Null}"
+                                    PreviewTextInput="Adminpasswordbox_PreviewTextInput"
                                     />
                                 <TextBox x:Name="Adminpassboxtxt" 
                                    Padding="10,0"
                                     Background="{x:Null}"
                                     Visibility="Hidden" 
-                                    BorderThickness="0,0,0,2" BorderBrush="Black"
-                                    Margin="150,20,150,20"/>
+                                    BorderThickness="0,0,0,2" 
+                                    BorderBrush="Black"
+                                    Margin="150,20,150,20"
+                                    PreviewTextInput="Adminpasswordbox_PreviewTextInput"
+                                     />
                             </Grid>
+                            <TextBlock x:Name="Adminpassworderrorbox"
+                                       HorizontalAlignment="Center" 
+                                       Foreground="#FF00349A"
+                                      />
                             <CheckBox x:Name="AdminShowpasscheck" Grid.Column="1"
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="Left"
