@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
+using Microsoft.Data.SqlClient;
+using System.Data;
 
 namespace firstpage
 {
@@ -22,33 +24,48 @@ namespace firstpage
 	class User
 	{
 		string Username;
-		string password;
+		string Password;
 		static List<User> users = new List<User>();
 
 		public User(string Username , string Password)
 		{
 			this.Username = Username;
-			this.password = Password;
+			this.Password = Password;
 		}
-		static User()
-		{
-			//extract data from database and put in users list
-		}
-		
+		static SqlConnection user = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\yazdi-pc\Desktop\Final-project\firstpage\Finalprojectdb.mdf;Integrated Security=True;Connect Timeout=30");
 		public static int User_Check(string username , string password)
 		{
-			if (/*username and password was ok*/true)
+			user.Open();
+			string cmd = "select Username,Password from UsersTable";
+			SqlDataAdapter adapter = new SqlDataAdapter(cmd, user);
+			DataTable data = new DataTable();
+			adapter.Fill(data);
+			for (int i = 0; i < data.Rows.Count; i++)
+			{
+				users.Add(new User(data.Rows[i][0].ToString(), data.Rows[i][1].ToString()));
+			}
+			user.Close();
+
+			if (users.Where(x => x.Username == username).Where(x => x.Password == password).Count() == 1)
 			{
 				return 1;
 			}
-			if (/*username exist but password wass incorrect*/false)
+			if (users.Where(x=>x.Username == username ).Count() == 0)
 			{
-				return 0;
+				return -1;
 			}
-			return -1;
+			return 0;
 		}
 
+		public static void Add_User(string  Name , string  Lastname , string  Phone , string  Email , string Username , string Password)
+		{
+			user.Open();
+			string cmd = "insert into [UsersTable] values('" + Name + "','" + Lastname + "','" + Phone + "','" + Email + "','" + Username + "','" + Password + "' )";
+			SqlCommand command = new SqlCommand(cmd,user);
+			command.ExecuteNonQuery();
+			user.Close();
 
+		}
 		public static bool Name_Check(string Name)
 		{
 			if (Regex.IsMatch(Name, "^[a-zA-Z]{3,32}$"))
@@ -83,7 +100,35 @@ namespace firstpage
 		}
 		public static bool Email_Already_Exist(string email)
 		{
-			if (/*Email already exist*/false)
+			user.Open();
+			string cmd = "select Email from UsersTable";
+			SqlDataAdapter adapter = new SqlDataAdapter(cmd, user);
+			DataTable data = new DataTable();
+			adapter.Fill(data);
+			List<string> Emails = new List<string>();
+			for (int i = 0; i < data.Rows.Count; i++)
+			{
+				Emails.Add(data.Rows[i][0].ToString());
+			}
+			if (Emails.Contains(email))
+			{
+				return true;
+			}
+			return false;
+		}
+		public static bool Username_already_exist(string username)
+		{
+			user.Open();
+			string cmd = "select Username from UsersTable";
+			SqlDataAdapter adapter = new SqlDataAdapter(cmd, user);
+			DataTable data = new DataTable();
+			adapter.Fill(data);
+			List<string> Usernames = new List<string>();
+			for (int i = 0; i < data.Rows.Count; i++)
+			{
+				Usernames.Add(data.Rows[i][1].ToString());
+			}
+			if (Usernames.Contains(username) )
 			{
 				return true;
 			}
@@ -159,8 +204,6 @@ namespace firstpage
 			{
 				case 1:
 					{
-						//open app
-						//send usersdata to it
 						UserMainPage userMainPage = new UserMainPage();
 						userMainPage.Show();
 						this.Close();
@@ -179,7 +222,6 @@ namespace firstpage
 				default:
 					break;
 			}
-
 		}
 
 		private void Admintabbtn_Click(object sender, RoutedEventArgs e)
@@ -220,6 +262,7 @@ namespace firstpage
 			string Lastname = Lastnamebox.Text;
 			string Phone = Phonebox.Text;
 			string Email = Emailbox.Text;
+			string Username = signupUsernamebox.Text;
 			string Password = signuppasswordbox.Password;
 			string Confirmpassword = confirmpasswordbox.Password;
 			int flg = 0;
@@ -249,6 +292,11 @@ namespace firstpage
 				flg = 1;
 				signupemailerrorbox.Text = "This email already signedup!";
 			}
+			if (User.Username_already_exist(Username))
+			{
+				flg = 1;
+				signupUsernameerrorbox.Text = "This username already exist!";
+			}
 			if (!User.Password_Check(Password))
 			{
 				flg = 1;
@@ -261,8 +309,15 @@ namespace firstpage
 			}
 			if ( flg == 0 )
 			{
-				/*add a user with this datas*/
+				User.Add_User(Name , Lastname , Phone , Email , Username , Password);
 				tabcntrl.SelectedIndex = 0;
+				Namebox.Text = "";
+				Lastnamebox.Text = "";
+				Phonebox.Text = "";
+				Emailbox.Text = "";
+				signupUsernamebox.Text = "";
+				signuppasswordbox.Password = "";
+				confirmpasswordbox.Password = "";
 				return;
 			}
 		}
@@ -363,5 +418,11 @@ namespace firstpage
 		{
 			Adminpassworderrorbox.Text = "";
 		}
+
+		private void signupUsernamebox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+		{
+			signupUsernameerrorbox.Text = "";
+		}
+
 	}
 }

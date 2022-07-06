@@ -52,20 +52,6 @@
                     </Button.Background>
                 </Button>
                 <Button x:Name="HomeTabBtn" Margin="10"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFFF0707" FontSize="18" FontWeight="Bold" Click="HomeTabBtn_Click" >
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type Button}">
-                                        <Border Background="{TemplateBinding Background}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                        <!-- Set Background-->
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </Button.Style>
                     Home
                 </Button>
                 <Button x:Name="MyLibraryTabBtn" Margin="10"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFFF0707" FontSize="18" FontWeight="Bold" Click="MyLibraryTabBtn_Click" >My Library</Button>

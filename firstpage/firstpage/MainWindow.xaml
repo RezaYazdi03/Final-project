@@ -32,7 +32,7 @@
                     BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC"
                         FontWeight="Bold" FontStyle="Normal" OpacityMask="#FFEC0707"/>
         </Grid>
-        <TabControl x:Name="tabcntrl" Grid.Row="1"  BorderThickness="0,0,0,0">
+        <TabControl x:Name="tabcntrl" Grid.Row="1"  BorderThickness="0,0,0,0" SelectionChanged="tabcntrl_SelectionChanged">
             <TabControl.ItemContainerStyle>
                 <Style TargetType="{x:Type TabItem}">
                     <Setter Property="Visibility" Value="Collapsed"/>
@@ -164,6 +164,7 @@
                                     <RowDefinition Height="100"/>
                                     <RowDefinition Height="100"/>
                                     <RowDefinition Height="100"/>
+                                    <RowDefinition Height="100"/>
                                     <RowDefinition Height="150"/>
                                     <RowDefinition Height="100"/>
                                     <RowDefinition Height="50"/>
@@ -240,7 +241,23 @@
                                                HorizontalAlignment="Center"
                                                />
                                 </StackPanel>
-                                <StackPanel x:Name="Passwordpnl" Grid.Row="5">
+                                <StackPanel x:Name="Usernamepnl" Grid.Row="5">
+                                <TextBlock 
+                                 Margin="100,0"
+                                 Text="Username" FontSize="22" />
+                                <TextBox x:Name="signupUsernamebox"
+                                        Margin="150,20"
+                                        Padding="10,0"
+                                        BorderBrush="#FFEF041C"
+                                        BorderThickness="0,0,0,2" Background="{x:Null}"
+                                        PreviewTextInput="signupUsernamebox_PreviewTextInput"
+                                            />
+                                <TextBlock x:Name="signupUsernameerrorbox" 
+                                               Foreground="#FF00349A"
+                                               HorizontalAlignment="Center"
+                                               />
+                            </StackPanel>
+                            <StackPanel x:Name="Passwordpnl" Grid.Row="6">
                                     <TextBlock 
                                  Margin="100,0"
                                 Text="Password" FontSize="22"
@@ -266,7 +283,7 @@
                                                Foreground="#FF00349A" 
                                                HorizontalAlignment="Center"/>
                                 </StackPanel>
-                                <StackPanel x:Name="Confirmpasspnl" Grid.Row="6">
+                                <StackPanel x:Name="Confirmpasspnl" Grid.Row="7">
                                     <TextBlock 
                                         Margin="100,0"
                                         Text="Confirm Password" FontSize="22"
@@ -304,7 +321,7 @@
                              >
                                     </CheckBox>
                                 </StackPanel>
-                                <Grid Grid.Row="7">
+                                <Grid Grid.Row="8">
                                     <Button x:Name="Signupbtn" 
                                 Content="Signup"
                                 VerticalAlignment="Center"
@@ -316,7 +333,7 @@
                                 BorderBrush="{x:Null}" Click="Signupbtn_Click"
                             />
                                 </Grid>
-                                <Grid Grid.Row="8">
+                                <Grid Grid.Row="9">
                                     <Button x:Name="Backbtn" 
                                         BorderBrush="{x:Null}" 
                                         FontFamily="Forte"
