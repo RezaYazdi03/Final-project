@@ -25,32 +25,37 @@ namespace firstpage
 	{
 		string Username;
 		string Password;
+		int id;
 		static List<User> users = new List<User>();
 
-		public User(string Username , string Password)
+		public User(string Username , string Password , int id)
 		{
 			this.Username = Username;
 			this.Password = Password;
+			this.id = id;
 		}
 		static SqlConnection user = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\yazdi-pc\Desktop\Final-project\firstpage\Finalprojectdb.mdf;Integrated Security=True;Connect Timeout=30");
 		public static int User_Check(string username , string password)
 		{
 			user.Open();
-			string cmd = "select Username,Password from UsersTable";
+			string cmd = "select id,Username,Password from UsersTable";
 			SqlDataAdapter adapter = new SqlDataAdapter(cmd, user);
 			DataTable data = new DataTable();
 			adapter.Fill(data);
+			users = new List<User>();
 			for (int i = 0; i < data.Rows.Count; i++)
 			{
-				users.Add(new User(data.Rows[i][0].ToString(), data.Rows[i][1].ToString()));
+				users.Add(new User(data.Rows[i][1].ToString(), data.Rows[i][2].ToString() , int.Parse(data.Rows[i][0].ToString())));
 			}
 			user.Close();
-
-			if (users.Where(x => x.Username == username).Where(x => x.Password == password).Count() == 1)
+			List<User> u = users.Where(x => x.Username == username).ToList();
+			if (u.Where(x => x.Password == password).Count() == 1)
 			{
+				UserMainPage userMainPage = new UserMainPage(u[0].id);
+				userMainPage.Show();
 				return 1;
 			}
-			if (users.Where(x=>x.Username == username ).Count() == 0)
+			if (u.Count() == 0)
 			{
 				return -1;
 			}
@@ -60,7 +65,7 @@ namespace firstpage
 		public static void Add_User(string  Name , string  Lastname , string  Phone , string  Email , string Username , string Password)
 		{
 			user.Open();
-			string cmd = "insert into [UsersTable] values('" + Name + "','" + Lastname + "','" + Phone + "','" + Email + "','" + Username + "','" + Password + "' )";
+			string cmd = "insert into [UsersTable] values('" + Name + "','" + Lastname + "','" + Phone + "','" + Email + "','" + Username + "','" + Password + "', 'False' )";
 			SqlCommand command = new SqlCommand(cmd,user);
 			command.ExecuteNonQuery();
 			user.Close();
@@ -105,6 +110,7 @@ namespace firstpage
 			SqlDataAdapter adapter = new SqlDataAdapter(cmd, user);
 			DataTable data = new DataTable();
 			adapter.Fill(data);
+			user.Close();
 			List<string> Emails = new List<string>();
 			for (int i = 0; i < data.Rows.Count; i++)
 			{
@@ -123,10 +129,11 @@ namespace firstpage
 			SqlDataAdapter adapter = new SqlDataAdapter(cmd, user);
 			DataTable data = new DataTable();
 			adapter.Fill(data);
+			user.Close();
 			List<string> Usernames = new List<string>();
 			for (int i = 0; i < data.Rows.Count; i++)
 			{
-				Usernames.Add(data.Rows[i][1].ToString());
+				Usernames.Add(data.Rows[i][0].ToString());
 			}
 			if (Usernames.Contains(username) )
 			{
@@ -204,8 +211,6 @@ namespace firstpage
 			{
 				case 1:
 					{
-						UserMainPage userMainPage = new UserMainPage();
-						userMainPage.Show();
 						this.Close();
 						break;
 					}

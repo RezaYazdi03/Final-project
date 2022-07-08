@@ -32,7 +32,7 @@
                     BorderBrush="{x:Null}" FontFamily="Bradley Hand ITC"
                         FontWeight="Bold" FontStyle="Normal" OpacityMask="#FFEC0707"/>
         </Grid>
-        <TabControl x:Name="tabcntrl" Grid.Row="1"  BorderThickness="0,0,0,0" SelectionChanged="tabcntrl_SelectionChanged">
+        <TabControl x:Name="tabcntrl" Grid.Row="1"  BorderThickness="0,0,0,0" >
             <TabControl.ItemContainerStyle>
                 <Style TargetType="{x:Type TabItem}">
                     <Setter Property="Visibility" Value="Collapsed"/>

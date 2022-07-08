@@ -32,7 +32,7 @@
                         FontWeight="Bold" FontStyle="Normal" OpacityMask="#FFEC0707"/>
         </Grid>
         <Grid Grid.Row ="1">
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal" >
                 <Button x:Name="UserDataTabbtn" Margin="60,10,40,10"  Width="40" Height="40" BorderBrush="{x:Null}" Foreground="#FFFF0707" VerticalAlignment="Top" Click="UserDataTabbtn_Click">
                     <Button.Style>
                         <Style TargetType="{x:Type Button}">
@@ -58,26 +58,30 @@
                 <Button x:Name="BookmarkTabBtn" Margin="10"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFFF0707" FontSize="18" FontWeight="Bold" Click="BookmarkTabBtn_Click" >Bookmarks</Button>
                 <Button x:Name="ValetTabBtn" Margin="10"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFFF0707" FontSize="18" FontWeight="Bold" Click="ValetTabBtn_Click" >Vallet</Button>
                 <Button x:Name="VIPTabBtn" Margin="10"  Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FF0FFF28"  FontSize="20" FontWeight="Bold" Click="VIPTabBtn_Click" >VIP</Button>
+                <Button x:Name="CartTabBtn" Margin="10"  Width="30" Height="30" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalAlignment="Right" Click="CartTabBtn_Click" >
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </Button.Style>
+                    <Button.Background>
+                        <ImageBrush ImageSource="/white-shopping-cart-icon-png-25.jpg"/>
+                    </Button.Background>
+                </Button>
+                
             </StackPanel>
-            <Button x:Name="CartTabBtn" Margin="10,0,50,0"  Width="30" Height="30" BorderBrush="{x:Null}" Foreground="{x:Null}" HorizontalAlignment="Right" Click="CartTabBtn_Click" >
-                <Button.Style>
-                    <Style TargetType="{x:Type Button}">
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="{x:Type Button}">
-                                    <Border Background="{TemplateBinding Background}">
-                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                                    </Border>
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                    </Style>
-                </Button.Style>
-                <Button.Background>
-                    <ImageBrush ImageSource="/white-shopping-cart-icon-png-25.jpg"/>
-                </Button.Background>
+            <Button x:Name="Signoutbtn" Margin="650,0,50,0" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="#FFFF0707" FontSize="18" FontWeight="Bold" HorizontalAlignment="Right" Click="Signoutbtn_Click" >
+                Signout
             </Button>
-            
+
         </Grid>
         <TabControl x:Name="tabcntrl" Grid.Row="2" BorderThickness="0,0,0,0">
             <TabControl.ItemContainerStyle>
@@ -109,7 +113,7 @@
                     </Grid>
                     <Grid Grid.Row="1">
                         <ScrollViewer>
-                            <ItemsControl ItemsSource="{Binding}">
+                            <ItemsControl ItemsSource="{Binding books}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Grid Height=" 200">
@@ -118,7 +122,7 @@
                                                 <ColumnDefinition Width="3*"/>
                                             </Grid.ColumnDefinitions>
                                             <Grid Grid.Column="0">
-                                                <Image x:Name="imgbox" Source="{Binding image}" ImageFailed="imgbox_ImageFailed" >
+                                                <Image x:Name="imgbox"  Margin="30,0,0,0" Source="{Binding image}" ImageFailed="imgbox_ImageFailed" >
                                                 </Image>
                                             </Grid>
                                             <Grid Grid.Column="1">
@@ -149,7 +153,7 @@
                                                             Margin="10" 
                                                                    FontSize="16" 
                                                                    Foreground="#FF7B7B7B"
-                                                                   Text="{Binding PageNumber}">
+                                                                   Text="{Binding Page_Number}">
                                                         </TextBlock>
                                                     </StackPanel>
                                                 </Grid>
@@ -171,13 +175,15 @@
                                                         </TextBlock>
                                                     </StackPanel>
                                                     <Button HorizontalAlignment="Right"
-                            Height="50"
-                            Width="300"
-                            Margin="30,0" 
-                            Background="#FF54D642"
-                            Content="Buy" BorderBrush="{x:Null}" 
-                            FontSize="24"
-                            FontFamily="Arial Black"></Button>
+                                                        Height="50"
+                                                        Width="200"
+                                                        Margin="200,0,50,0"
+                                                        Padding="10"
+                                                        Background="#FF54D642"
+                                                        Content="Buy"
+                                                        BorderBrush="{x:Null}" 
+                                                        FontSize="24"
+                                                        FontFamily="Arial Black"></Button>
                                                 </Grid>
                                             </Grid>
 
@@ -212,7 +218,7 @@
                     </Grid>
                     <Grid Grid.Row="1">
                         <ScrollViewer>
-                            <ItemsControl ItemsSource="{Binding}">
+                            <ItemsControl ItemsSource="{Binding mybooks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" >
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Grid Height=" 200">
@@ -273,14 +279,16 @@
                                                             Text="{Binding Price}">
                                                         </TextBlock>
                                                     </StackPanel>
-                                                    <Button HorizontalAlignment="Right"
-                            Height="50"
-                            Width="300"
-                            Margin="30,0" 
-                            Background="#FF54D642"
-                            Content="Buy" BorderBrush="{x:Null}" 
-                            FontSize="24"
-                            FontFamily="Arial Black"></Button>
+                                                    <Button x:Name="readbtn" HorizontalAlignment="Right"
+                                                        Height="50"
+                                                        Width="200"
+                                                        Margin="200,0,50,0"
+                                                        Padding="10"
+                                                        Background="#FF54D642"
+                                                        Content="Read"
+                                                        BorderBrush="{x:Null}" 
+                                                        FontSize="24"
+                                                        FontFamily="Arial Black" Click="readbtn_Click"> </Button>
                                                 </Grid>
                                             </Grid>
 
@@ -315,7 +323,7 @@
                     </Grid>
                     <Grid Grid.Row="1">
                         <ScrollViewer>
-                            <ItemsControl ItemsSource="{Binding}">
+                            <ItemsControl ItemsSource="{Binding bookmarks}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
                                         <Grid Height=" 200">
@@ -377,13 +385,15 @@
                                                         </TextBlock>
                                                     </StackPanel>
                                                     <Button HorizontalAlignment="Right"
-                            Height="50"
-                            Width="300"
-                            Margin="30,0" 
-                            Background="#FF54D642"
-                            Content="Buy" BorderBrush="{x:Null}" 
-                            FontSize="24"
-                            FontFamily="Arial Black"></Button>
+                                                        Height="50"
+                                                        Width="200"
+                                                        Margin="200,0,50,0"
+                                                        Padding="10"
+                                                        Background="#FF54D642"
+                                                        Content="Read"
+                                                        BorderBrush="{x:Null}" 
+                                                        FontSize="24"
+                                                        FontFamily="Arial Black"></Button>
                                                 </Grid>
                                             </Grid>
 
@@ -399,7 +409,188 @@
                 
             </TabItem>
             <TabItem x:Name="VIPTab"></TabItem>
-            <TabItem x:Name="UserDataTab"></TabItem>
+            <TabItem x:Name="UserDataTab">
+                <ScrollViewer>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="150"/>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="150"/>
+                            <RowDefinition Height="100"/>
+                            <RowDefinition Height="50"/>
+                        </Grid.RowDefinitions>
+
+                        <TextBlock Grid.Row="0" 
+                                    HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center" 
+                                    Margin="0"
+                                    Text="Edit" FontSize="100" 
+                                    FontFamily="Brush Script MT" 
+                                    Foreground="#FFEF041C"
+                                    />
+                        <StackPanel x:Name="Namepnl" Grid.Row="1">
+                            <TextBlock 
+                                 Margin="100,0"
+                                 Text="Name" FontSize="22" />
+                            <TextBox x:Name="Namebox"
+                                        Margin="150,20"
+                                        Padding="10,0"
+                                        BorderBrush="#FFEF041C"
+                                        BorderThickness="0,0,0,2" Background="{x:Null}" 
+                                        SelectionBrush="{x:Null}" SelectionTextBrush="{x:Null}"
+                                        OpacityMask="#FFEF041C"
+                                        PreviewTextInput="Namebox_PreviewTextInput"
+                                        />
+                            <TextBlock x:Name="signupnameerrorbox" 
+                                    HorizontalAlignment="Center" Foreground="#FF00349A"/>
+                        </StackPanel>
+                        <StackPanel x:Name="Lastnamepnl" Grid.Row="2">
+                            <TextBlock 
+                                 Margin="100,0"
+                                 Text="Lastname" FontSize="22" />
+                            <TextBox x:Name="Lastnamebox"
+                                       Margin="150,20"
+                                       Padding="10,0"
+                                        BorderBrush="#FFE80808"
+                                        BorderThickness="0,0,0,2" 
+                                        Background="{x:Null}"
+                                        PreviewTextInput="Namebox_PreviewTextInput"
+                                        />
+                            <TextBlock x:Name="signuplastnameerrorbox" 
+                                               Foreground="#FF00349A"
+                                               HorizontalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel x:Name="Phonepnl" Grid.Row="3">
+                            <TextBlock 
+                                 Margin="100,0"
+                                 Text="Phone" FontSize="22" />
+                            <TextBox x:Name="Phonebox"
+                                        Margin="150,20"
+                                        Padding="10,0"
+                                        BorderBrush="#FFEF041C"
+                                        BorderThickness="0,0,0,2" Background="{x:Null}"
+                                        PreviewTextInput="Phonebox_PreviewTextInput"
+                                        />
+                            <TextBlock x:Name="signupphoneerrorbox" 
+                                               Foreground="#FF00349A" 
+                                               HorizontalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel x:Name="Emailpnl" Grid.Row="4">
+                            <TextBlock 
+                                 Margin="100,0"
+                                 Text="Email" FontSize="22" />
+                            <TextBox x:Name="Emailbox"
+                                        Margin="150,20"
+                                        Padding="10,0"
+                                        BorderBrush="#FFEF041C"
+                                        BorderThickness="0,0,0,2" Background="{x:Null}"
+                                        PreviewTextInput="Emailbox_PreviewTextInput"
+                                            />
+                            <TextBlock x:Name="signupemailerrorbox" 
+                                               Foreground="#FF00349A"
+                                               HorizontalAlignment="Center"
+                                               />
+                        </StackPanel>
+                        <StackPanel x:Name="Usernamepnl" Grid.Row="5">
+                            <TextBlock 
+                                 Margin="100,0"
+                                 Text="Username" FontSize="22" />
+                            <TextBox x:Name="signupUsernamebox"
+                                        Margin="150,20"
+                                        Padding="10,0"
+                                        BorderBrush="#FFEF041C"
+                                        BorderThickness="0,0,0,2" Background="{x:Null}"
+                                        PreviewTextInput="signupUsernamebox_PreviewTextInput"
+                                            />
+                            <TextBlock x:Name="signupUsernameerrorbox" 
+                                               Foreground="#FF00349A"
+                                               HorizontalAlignment="Center"
+                                               />
+                        </StackPanel>
+                        <StackPanel x:Name="Passwordpnl" Grid.Row="6">
+                            <TextBlock 
+                                 Margin="100,0"
+                                Text="Password" FontSize="22"
+                                VerticalAlignment="Center"/>
+                            <Grid>
+                                <PasswordBox x:Name="signuppasswordbox" 
+                                            Margin="150,20,150,20"
+                                            Padding="10,0"
+                                            BorderBrush="#FFEF041C"
+                                            BorderThickness="0,0,0,2" Background="{x:Null}" 
+                                            Grid.ColumnSpan="2"
+                                            PreviewTextInput="signuppassboxtxt_PreviewTextInput"
+                                            />
+                                <TextBox x:Name="signuppassboxtxt" 
+                                            Padding="10,0"
+                                            Background="{x:Null}"
+                                            Visibility="Hidden" 
+                                            BorderThickness="0,0,0,2" BorderBrush="#FFEF041C"
+                                            Margin="150,20,150,20" Grid.ColumnSpan="2"
+                                            PreviewTextInput="signuppassboxtxt_PreviewTextInput"/>
+                            </Grid>
+                            <TextBlock x:Name="signuppassworderrorbox"
+                                               Foreground="#FF00349A" 
+                                               HorizontalAlignment="Center"/>
+                        </StackPanel>
+                        <StackPanel x:Name="Confirmpasspnl" Grid.Row="7">
+                            <TextBlock 
+                                        Margin="100,0"
+                                        Text="Confirm Password" FontSize="22"
+                                        HorizontalAlignment="Left"/>
+                            <Grid>
+                                <PasswordBox x:Name="confirmpasswordbox" 
+                                            Margin="150,20,150,20"
+                                            Padding="10,0"
+                                            BorderBrush="#FFEF041C"
+                                            BorderThickness="0,0,0,2" Background="{x:Null}" 
+                                            PreviewTextInput="confirmpasswordbox_PreviewTextInput"
+                                            />
+                                <TextBox x:Name="confirmpassboxtxt" 
+                                            Padding="10,0"
+                                            Background="{x:Null}"
+                                            Visibility="Hidden" 
+                                            BorderThickness="0,0,0,2" 
+                                            BorderBrush="#FFEF041C"
+                                            Margin="150,20,150,20" 
+                                            PreviewTextInput="confirmpasswordbox_PreviewTextInput"
+                                            />
+                            </Grid>
+                            <TextBlock x:Name="signupconfirmpassbox" 
+                                               Foreground="#FF00349A"
+                                               HorizontalAlignment="Center"
+                                               />
+                            <CheckBox x:Name="signupShowpasscheck"
+                        VerticalAlignment="Center" 
+                          Content="Show password"
+                        Margin="150,0,150,5"
+                                              HorizontalAlignment="Left"
+                          Width="150" Background="White" BorderBrush="#FF615F5F" 
+                             Checked="signupShowpasscheck_Checked" 
+                             Unchecked="signupShowpasscheck_Unchecked" 
+                             >
+                            </CheckBox>
+                        </StackPanel>
+                        <Grid Grid.Row="8">
+                            <Button x:Name="Savebtn" 
+                                Content="Save Changes"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Height="60"
+                                            Margin="150,0,150,0"
+                                Width="500" FontSize="30" Foreground="White" 
+                                FontFamily="Bodoni MT Black" Background="#FFEF041C" 
+                                BorderBrush="{x:Null}" Click="Savebtn_Click"
+                            />
+                        </Grid>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
             <TabItem x:Name="CartTab"></TabItem>
         </TabControl>
     </Grid>
